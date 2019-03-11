@@ -9,7 +9,8 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://ner-backend:' + process.env.MONGO_ATLAS_PW + '@ner-backend-shard-00-00-jef1p.mongodb.net:27017,ner-backend-shard-00-01-jef1p.mongodb.net:27017,ner-backend-shard-00-02-jef1p.mongodb.net:27017/test?ssl=true&replicaSet=ner-backend-shard-0&authSource=admin&retryWrites=true');
+mongoose.connect('mongodb://ner-backend:' + process.env.MONGO_ATLAS_PW + '@ner-backend-shard-00-00-jef1p.mongodb.net:27017,ner-backend-shard-00-01-jef1p.mongodb.net:27017,ner-backend-shard-00-02-jef1p.mongodb.net:27017/test?ssl=true&replicaSet=ner-backend-shard-0&authSource=admin&retryWrites=true',
+{ useNewUrlParser: true });
 
 app.use(morgan('dev')); //logger middleware 
 app.use(bodyParser.urlencoded({extended: false}));

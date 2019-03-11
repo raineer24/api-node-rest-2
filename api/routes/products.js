@@ -97,7 +97,7 @@ router.patch('/:productId', (req, res, next) => {
     for (const ops of req.body) {
         updateOps[ops.propName] = ops.value;
     }
-    Product.update({ _id: id}, { $set: { name: req.body.newName, price: req.body.newPrice }})
+    Product.updateOne({ _id: id}, { $set: { name: req.body.newName, price: req.body.newPrice }})
      .exec()
      .then(result => {
          console.log(result);
@@ -109,7 +109,10 @@ router.patch('/:productId', (req, res, next) => {
      });
 });
 
-
+// array when patching/updating items [ ] not { } in postman
+// [
+// 	{"propName": "name", "value": "nick fury"}
+// ]
 
 router.delete('/:productId', (req, res, next) => {
     const id = req.params.productId;
