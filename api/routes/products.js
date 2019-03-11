@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Product = require('../models/product');
+const Product = require('../models/product'); // product model
 
 router.get('/', (req, res, next) => {
     res.status(200).json({
@@ -11,22 +11,35 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    //store data
     const product = new Product({
-        _id: new mongoose.Types.ObjectId(), //constructor function
+        _id: new mongoose.Types.ObjectId(), 
         name: req.body.name,
         price: req.body.price
-    }); //( new Product )model as a constructor, pass a javascript object . pass an object for that model
+    }); 
     product
-        .save() //save is a method provided by mongoose, store in the database
+        .save() 
         .then(result => {
-            console.log(result)
+            console.log(result);
         })
         .catch(err => console.log(err));
-        res.status(201).json({ // response json
+        res.status(201).json({ 
         message: 'Handling POST requests to /products',
         createdProduct: product
     });
+});
+
+router.get('/:productId', (req, res, next) => {
+    const id = req.params.productId;
+    Product.findById(id) 
+     .exec()
+     .then(doc => {
+         console.log(doc);
+         res.status(200).json(doc); 
+     })
+     .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+     });
 });
 
 router.get('/:productId', (req, res, next) => {
