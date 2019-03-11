@@ -42,19 +42,20 @@ router.get('/:productId', (req, res, next) => {
      });
 });
 
-router.get('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    if ( id === 'special') {
-        res.status(200).json({
-            message: 'You discovered the special ID',
-            id: id
-        });
-    } else {
-        res.status(200).json({
-            message: 'You passed an ID'
-        });
-    }
-});
+// router.get('/:productId', (req, res, next) => {
+//     const id = req.params.productId;
+//     if ( id === 'special') {
+//         res.status(200).json({
+//             message: 'You discovered the special ID',
+//             id: id
+//         });
+//     } else {
+//         res.status(200).json({
+//             message: 'You passed an ID',
+//             tae: 'dasd'
+//         });
+//     }
+// });
 
 router.patch('/:productId', (req, res, next) => {
     res.status(200).json({
