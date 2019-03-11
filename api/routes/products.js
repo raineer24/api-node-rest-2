@@ -85,6 +85,12 @@ router.get('/:productId', (req, res, next) => {
 //     }
 // });
 
+// router.patch('/:productId', (req, res, next) => {
+//     res.status(200).json({
+//         message: 'Updated product!'
+//     });
+// }); // original update method (patch request)
+
 router.patch('/:productId', (req, res, next) => {
     res.status(200).json({
         message: 'Updated product!'
